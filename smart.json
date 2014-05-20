@@ -1,0 +1,9 @@
+{
+  "packages": {
+    "iron-router": {},
+    "bootstrap3-less": {},
+    "simple-schema": {},
+    "fontawesome4": {},
+    "collectionFS": {}
+  }
+}

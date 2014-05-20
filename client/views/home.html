@@ -1,0 +1,22 @@
+<template name="home">
+  <div class="container">
+    {{#if getImage}}
+      {{> editUserPhoto}}
+    {{else}}
+      {{> addUserPhoto}}
+    {{/if}}
+  </div>
+</template>
+
+<template name="addUserPhoto">
+  <div class="form-group">
+    <label for="userFileInput">Select file</label>
+    <input type="file" id="userFileInput">
+    <p class="help-block"></p>
+  </div>
+  <button class="btn btn-primary uploadFile">Upload</button>
+</template>
+
+<template name="editUserPhoto">
+  <img src="{{imageUrl}}" id="photo">
+</template>

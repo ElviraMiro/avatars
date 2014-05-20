@@ -1,0 +1,10 @@
+standard-app-packages
+iron-router
+less
+bootstrap3-less
+accounts-ui
+accounts-password
+simple-schema
+fontawesome4
+collectionFS
+cfs-gridfs
