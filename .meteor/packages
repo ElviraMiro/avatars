@@ -8,3 +8,5 @@ simple-schema
 fontawesome4
 collectionFS
 cfs-gridfs
+cfs-filesystem
+graphicsmagick

@@ -18,5 +18,33 @@
 </template>
 
 <template name="editUserPhoto">
-  <img src="{{imageUrl}}" id="photo">
+  <div class="row">
+    <div class="col-xs-8">
+      <img src="{{imageUrl}}" id="photo"> <button class="btn btn-primary send">Create</button>
+    </div>
+    <div class="col-xs-4">
+      <div class="well" style="margin-top:10px">
+        1. Select part of image.
+        <hr>
+        2. Push <kbd>Create</kbd> button.
+        <hr>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade alert alert-danger" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Problem</h4>
+        </div>
+        <div class="modal-body">
+          <p>No selection of image</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>

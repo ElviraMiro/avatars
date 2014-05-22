@@ -7,5 +7,9 @@ Router.map(function() {
     path: '/',
     template: 'home'
   });
+  this.route('frames', {
+    path: '/frames',
+    template: 'frames'
+  });
 });
 

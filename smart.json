@@ -4,6 +4,7 @@
     "bootstrap3-less": {},
     "simple-schema": {},
     "fontawesome4": {},
-    "collectionFS": {}
+    "collectionFS": {},
+    "graphicsmagick": {}
   }
 }

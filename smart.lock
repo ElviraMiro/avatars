@@ -6,7 +6,8 @@
       "bootstrap3-less": {},
       "simple-schema": {},
       "fontawesome4": {},
-      "collectionFS": {}
+      "collectionFS": {},
+      "graphicsmagick": {}
     },
     "packages": {
       "iron-router": {
@@ -33,6 +34,11 @@
         "git": "https://github.com/CollectionFS/Meteor-CollectionFS.git",
         "tag": "v0.4.8",
         "commit": "fea890b1e27799ccc9f71046748fb23a84330a16"
+      },
+      "graphicsmagick": {
+        "git": "https://github.com/ewindso/meteor-graphicsmagick.git",
+        "tag": "v1.12.2",
+        "commit": "795dcb78be6d2b493a547073f98c967e284248e0"
       },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",

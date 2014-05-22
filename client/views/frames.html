@@ -1,0 +1,74 @@
+<template name="frames">
+  <div class="container">
+    {{#if addFrame}}
+      {{> editFrame}}
+    {{else}}
+      {{> listFrames}}
+    {{/if}}
+  </div>
+</template>
+
+<template name="listFrames">
+  <button class="addFrame btn btn-primary">Add new frame</button>
+  <table class="table table-condensed table-striped">
+    {{#each frames}}
+      <tr>
+        <td>
+          <div class="row">
+            <div class="col-xs-1">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" id="{{_id}}">
+                </label>
+              </div>
+            </div>
+            <div class="col-xs-11">
+              <img src="{{url}}" class="img-thumbnail">
+            </div>
+          </div>
+        </td>
+      </tr>
+    {{/each}}
+  </table>
+</template>
+
+<template name="editFrame">
+  <div class="well" style="margin-top:10px">
+    <div class="row">
+      <div class="col-xs-8">
+        <img src="{{imageUrl}}" id="photo" style="width: 100%;">
+      </div>
+      <div class="col-xs-4">
+        <div class="form-group">
+          <label>Hole's width</label>
+          <input type="text" class="form-control" id="holeWidth">
+        </div>
+        <div class="form-group">
+          <label>Hole's height</label>
+          <input type="text" class="form-control" id="holeHeight">
+        </div>
+        <div class="form-group">
+          <label>Hole's X1</label>
+          <input type="text" class="form-control" id="holeX1">
+        </div>
+        <div class="form-group">
+          <label>Hole's Y1</label>
+          <input type="text" class="form-control" id="holeY1">
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-xs-8">
+        <input type="file" id="frameInput">
+        {{#if fileChange}}
+          <button class="btn btn-primary send">Upload</button>
+        {{/if}}
+      </div>
+      <div class="col-xs-4">
+        <button type="button" class="btn btn-primary save">Save</button>
+        <button type="button" class="btn btn-default cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+</template>
