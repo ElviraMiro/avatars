@@ -10,24 +10,30 @@
 
 <template name="listFrames">
   <button class="addFrame btn btn-primary">Add new frame</button>
-  <table class="table table-condensed table-striped">
+  <table class="table table-striped">
     {{#each frames}}
       <tr>
         <td>
           <div class="row">
             <div class="col-xs-1">
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" id="{{_id}}">
-                </label>
-              </div>
+              <button type="button" class="btn btn-danger delete">Delete</button>
             </div>
-            <div class="col-xs-11">
-              <img src="{{url}}" style="widht:100px">
+            <div class="col-xs-5">
+              <img src="{{url}}" height="200px">
+            </div>
+            <div class="col-xs-6">
+              hole's width: <b>{{metadata.selection.width}}</b>
+              <hr>
+              hole's height: <b>{{metadata.selection.height}}</b>
+              <hr>
+              hole's x1: <b>{{metadata.selection.x1}}</b>
+              <hr>
+              hole's y1: <b>{{metadata.selection.y1}}</b>
             </div>
           </div>
         </td>
       </tr>
+      <hr>
     {{/each}}
   </table>
 </template>
@@ -36,7 +42,7 @@
   <div class="well" style="margin-top:10px">
     <div class="row">
       <div class="col-xs-8">
-        <img src="{{imageUrl}}" id="photo" style="width: 100%;">
+        <img src="{{imageUrl}}" id="frame" style="width: 100%;">
       </div>
       <div class="col-xs-4">
         <div class="form-group">

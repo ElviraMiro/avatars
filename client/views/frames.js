@@ -18,6 +18,10 @@ Template.listFrames.events({
 	'click .addFrame': function(e, t) {
 		Session.set("addFrame", true);
 
+	},
+	'click .delete': function(e, t) {
+		var frameId = this._id;
+		Frames.remove(frameId);
 	}
 });
 
@@ -50,6 +54,14 @@ Template.editFrame.events({
 				};
 			});
 			Session.set("frame", img);
+			$('img#frame').imgAreaSelect({
+				onSelectEnd: function (img, selection) {
+					$("#holeWidth").val(selection.width),
+					$("#holeHeight").val(selection.height),
+					$("#holeX1").val(selection.x1),
+					$("#holeY1").val(selection.y1);
+				}
+			});
 		}
 	},
 	'click .cancel': function(e, t) {
