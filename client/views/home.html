@@ -3,7 +3,11 @@
     {{#if getImage}}
       {{> editUserPhoto}}
     {{else}}
-      {{> addUserPhoto}}
+      {{#if lookImage}}
+        {{> lookImageData}}
+      {{else}}
+        {{> addUserPhoto}}
+      {{/if}}
     {{/if}}
   </div>
 </template>
@@ -66,5 +70,12 @@
         </div>
       </div>
     </div>
+  </div>
+</template>
+
+<template name="lookImageData">
+  <div style="margin-top:10px;margin-left:10px;">
+    <img src="{{frameUrl}}" style="{{frameStyle}}">
+    <img src="{{imageUrl}}" style="{{imageStyle}}">
   </div>
 </template>
