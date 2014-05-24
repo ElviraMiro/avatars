@@ -73,15 +73,23 @@ Template.editUserPhoto.events({
 		if (!selection) {
 			$('#myModal').modal();
 		} else {
-			var image = Images.findOne({"metadata.sessionId": Session.get("sessionId")});
+			var image = Images.findOne({"metadata.sessionId": Session.get("sessionId")}),
+				frame = Frames.findOne(Session.get("selectedFrame")._id),
+				size = {width: 932,
+					height: 783},
+				x1 = Session.get("selectedFrame").metadata.selection.x1,
+				y1 = Session.get("selectedFrame").metadata.selection.y1;
 			/*
 			console.log(image);
   			var readStream = image.createReadStream('images');
   			var writeStream = image.createWriteStream('images');
 			gm(readStream).crop(selection.width, selection.height, selection.x1, selection.y1).resize(630, 475).stream().pipe(writeStream);*/
-			Meteor.call('addFrame', image.copies.images.key, Session.get("selectedFrame").copies.frameimages.key, Session.get("selection"), Session.get("selectedFrame").metadata.selection);
-			Session.set("getImage", false);
-			Session.set("lookImage", true);
+			Meteor.call('cropImage', image._id, Session.get("selectedFrame")._id, Session.get("selection"), function() {
+				Meteor.call('addFrame', '/Users/elvira/avatars/.meteor/local/cfs/files/images/'+image.copies.images.key, '/Users/elvira/avatars/.meteor/local/cfs/files/frameimages/'+frame.copies.frameimages.key, size, x1, y1, image._id, function(result) {
+					Session.set("getImage", false);
+					Session.set("lookImage", true);	
+				});
+			});
 		}
 	}
 });
@@ -89,25 +97,17 @@ Template.editUserPhoto.events({
 Template.lookImageData.helpers({
 	imageUrl: function() {
 		var image = Images.findOne({"metadata.sessionId": Session.get("sessionId")});
+		console.log(image);
 		if (image) {
-			return image.url();
+			var finalimage = FinalImages.findOne(image._id);
+			console.log(finalimage);
+			if (finalimage) {
+				return finalimage.canvas;
+			} else {
+				return "";
+			}
+		} else {
+			return "";
 		}
-	},
-	frameUrl: function() {
-		return Session.get("frameUrl");
-	},
-	imageStyle: function() {
-		var frame = Session.get("selectedFrame"),
-			result = "";
-		if (frame) {
-			bottom = 15+parseInt(frame.metadata.selection.y1);
-			left = 15+parseInt(frame.metadata.selection.x1);
-			result = "z-index: 1; position: absolute; bottom: "+bottom+"px; left: "+left+"px;";
-		}
-		return result;
-	},
-	frameStyle: function() {
-		var result = "z-index: 2; position: absolute; bottom: 15px; left: 15px;";
-		return result;
 	}
 });

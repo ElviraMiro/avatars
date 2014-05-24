@@ -4,4 +4,8 @@ Meteor.publish('frames', function() {
 
 Meteor.publish('images', function() {
   return Images.find();
-})
+});
+
+Meteor.publish('finalimages', function() {
+  return FinalImages.find();
+});

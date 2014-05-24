@@ -87,38 +87,3 @@ Template.editFrame.events({
 		Session.set('addFrame', false);
 	}
 });
-
-Template.editUserPhoto.rendered = function() {
-	$('img#photo').imgAreaSelect({
-		aspectRatio: "645:495",
-		onSelectEnd: function (img, selection) {
-			Session.set("selection", selection);
-		}
-	});
-};
-
-Template.editUserPhoto.helpers({
-	'imageUrl': function() {
-		var image = Images.findOne({"metadata.sessionId": Session.get("sessionId")});
-		if (image) {
-			return image.url();
-		}
-	}
-});
-
-Template.editUserPhoto.events({
-	'click .send': function() {
-		var selection = Session.get("selection");
-		if (!selection) {
-			$('#myModal').modal();
-		} else {
-			var image = Images.findOne({"metadata.sessionId": Session.get("sessionId")});
-			/*
-			console.log(image);
-  			var readStream = image.createReadStream('images');
-  			var writeStream = image.createWriteStream('images');
-			gm(readStream).crop(selection.width, selection.height, selection.x1, selection.y1).resize(630, 475).stream().pipe(writeStream);*/
-			Meteor.call('addFrame', image.copies.images.key, selection, 'public/frame.png');
-		}
-	}
-});
