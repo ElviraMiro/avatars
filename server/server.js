@@ -19,38 +19,34 @@ Meteor.methods({
 		});
 	},
 	addFrame: function(imageSource, frameSource, size, insertx1, inserty1, imageId) {
-		var canvas = new Canvas(size.width,size.height),
-  			context = canvas.getContext('2d'),
-  			n1 = 1;
-  		function loadAndDrawImage(urls, number, insertx1, inserty1)
-		{
-		    // Create an image object. This is not attached to the DOM and is not part of the page.
-		    //console.log("NUMBER", number, urls[number]);
-		    var image = new Image();
-		 	
-		    // When the image has loaded, draw it to the canvas
-		    image.onload = function()
-		    {
-		    	context.drawImage(image,insertx1, inserty1);
-		        if (number<urls.length-1) {
-		        	loadAndDrawImage(urls, number+1, 0, 0);
-		        } else {
-		        	var id = FinalImages.insert({canvas: canvas.toDataURL(), _id: imageId});
-		        	console.log(id);
-		        }
-		        console.log(number);
-		        return;
-		    }
-		    // Now set the source of the image that we want to load
-		    image.src = urls[number];
-		    image.onload();
-		    console.log('finish', n1);
-		    n1 += 1;
-		    return;
-		}
-		loadAndDrawImage([imageSource, frameSource], 0, insertx1, inserty1);
-		console.log("finish");
-		return "finish";
+		//var imageMagick = gm.subClass({ imageMagick: true });
+		//imageMagick(frameSource).size(function(err, size) {
+			//console.log(frameSource, err, size);
+			var canvas = new Canvas(size.width,size.height),
+	  			context = canvas.getContext('2d');
+	  		function loadAndDrawImage(urls, number, insertx1, inserty1)
+			{
+			    // Create an image object. This is not attached to the DOM and is not part of the page.
+			    //console.log("NUMBER", number, urls[number]);
+			    var image = new Image();
+			 	
+			    // When the image has loaded, draw it to the canvas
+			    image.onload = function()
+			    {
+			    	context.drawImage(image,insertx1, inserty1);
+			        if (number<urls.length-1) {
+			        	loadAndDrawImage(urls, number+1, 0, 0);
+			        } else {
+			        	var id = FinalImages.insert({canvas: canvas.toDataURL(), _id: imageId});
+			        }
+			    }
+			    // Now set the source of the image that we want to load
+			    image.src = urls[number];
+			    //image.onload();
+			}
+			loadAndDrawImage([imageSource, frameSource], 0, insertx1, inserty1);
+		//});
+		return true;
 	}
 });
 
