@@ -85,7 +85,7 @@ Template.editUserPhoto.events({
   			var writeStream = image.createWriteStream('images');
 			gm(readStream).crop(selection.width, selection.height, selection.x1, selection.y1).resize(630, 475).stream().pipe(writeStream);*/
 			Meteor.call('cropImage', image._id, Session.get("selectedFrame")._id, Session.get("selection"), function() {
-				Meteor.call('addFrame', '/Users/elvira/avatars/.meteor/local/cfs/files/images/'+image.copies.images.key, '/Users/elvira/avatars/.meteor/local/cfs/files/frameimages/'+frame.copies.frameimages.key, size, x1, y1, image._id, function(result) {
+				Meteor.call('addFrame', '/prod/avatars/.meteor/local/cfs/files/images/'+image.copies.images.key, '/prod/avatars/.meteor/local/cfs/files/frameimages/'+frame.copies.frameimages.key, size, x1, y1, image._id, function(result) {
 					Session.set("getImage", false);
 					Session.set("lookImage", true);	
 				});
