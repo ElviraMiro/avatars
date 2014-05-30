@@ -5,8 +5,8 @@ Meteor.methods({
 	cropImage: function(imageId, frameId, selection) {
 		var image = Images.findOne(imageId),
 			frame = Frames.findOne(frameId),
-			framename = "/prod/avatars/cfs/files/frameimages/" + frame.copies.frameimages.key;
-			imagename = "/prod/avatars/cfs/files/images/" + image.copies.images.key;
+			framename = "/prod/avatars/.meteor/local/cfs/files/frameimages/" + frame.copies.frameimages.key;
+			imagename = "/prod/avatars/.meteor/local/cfs/files/images/" + image.copies.images.key;
 			cropw = selection.width,
 			croph = selection.height,
 			cropx1 = selection.x1,
